@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Slider - Vertical slider</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css">
+  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+  <script>
+ $(document).ready(function(){
+  $('#chrome').hide();
+  $('#desktop-other').hide();
+  $('#mobile-other').hide();
+    var ua = navigator.userAgent;
+
+    if(/Android|CriOS/i.test(ua))
+
+      $('#mobile-other').show(),
+      $( window ).on( "orientationchange", function( event ) {
+  $( "#orientation" ).text( "This device is in " + event.orientation + " mode!" );
+});
+      
+    else if(/Chrome/i.test(ua))
+      $('#mobile-other').hide(),
+      $('#chrome').show();
+    
+    else 
+    $('#desktop-other').show();
+
+
+
+ }
+ );
+  </script>
+</head>
+<body>
+<p id="desktop-other"> FIREFOX</p>
+<p id="mobile-other"> Mobile</p>
+<p id="chrome">CHROME</p>
+
+<p id="orientation"></p>
+
+
+</body>
+</html>

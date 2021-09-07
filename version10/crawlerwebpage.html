@@ -1,0 +1,468 @@
+<!--
+    page schematic
+*************************************************************************************************************************
+                                                  title
+*************************************************************************************************************************
+navbar
+*************************************************************************************************************************
+                                                  page title
+*************************************************************************************************************************
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*             zone 1                      *        zone 2                         *            zone 3                   *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*                                         *                                       *                                     *
+*************************************************************************************************************************
+-->
+
+
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <title>CRAWLER</title>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel ="stylesheet" href="w3.css">
+
+    
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    
+    <!-- compass-->
+    <script src='compass/compass.js'></script>
+
+    <!-- round slider-->
+    <script src="roundSlider-master/demo/scripts/jquery-1.11.3.min.js"></script>
+    <link href="roundSlider-master/dist/roundslider.min.css" rel="stylesheet" />
+    <script src="roundSlider-master/dist/roundslider.min.js"></script>
+</head>
+
+
+
+<body class="blue" onload="init()">
+    <div id="desktop-other">
+    <div class="row jumbotron text-center title" style="margin-bottom:0">
+        <div class="col" id="img1"><img src = "crawler.png" class="crawler"></div>
+        <div class="col ">
+
+            <h1 id="title2">Crawler controls</h1>
+        </div>
+        <div class="col" id="img2"><img src = "crawler.png" class="crawler"></div>
+    </div>
+    <div class="blink" id="img3">
+        <img src = "gears.png" class="teste">
+    </div> 
+    <nav class=" navbar navbar-expand-sm menubar navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li id="navbar1" class="nav-item active">
+                    <a class="nav-link police" onclick="hideandshowmanual()">Manual Controlling</a>
+                </li>
+                <li  id="navbar2" class="nav-item">
+                    <a class="nav-link police" onclick="hideandshowadavnced()">Advanced Controlling</a>
+                </li>
+                <li id="navbar3" class="nav-item">
+                    <a class="nav-link police" onclick="hideandshowautomatic()">Automatic Control</a>
+                </li> 
+                <li id="navbar4" class="nav-item" >
+                    <a class="nav-link d-none police" onclick="deconnection()" id="decobuton">Deconnection</a>
+                </li>
+                     
+            </ul>
+        </div>
+        
+        
+    </nav>
+    
+    <!-- Connection page-->
+    <div class="" id="connectionpage">
+        <div class="container-fluid text-center mb-4 titlepage">
+            <h3 id="connectionMessage">Connection to robot crawler :</h3> 
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col"></div>
+            <div class="col" id="buttonConnection"><button type="button" class="btn btn-success on btn_on_off go myButtonConnection my myButtonGO  depth3" onclick="connection()">Connection</button></div>
+            <div class="col"></div>
+            
+        </div>
+    </div>
+
+    <!--page occuper-->
+    <div class="d-none" id="pageoccuper">
+        <div class="container-fluid text-center mb-4 titlepage">
+            <h3 id="connectionMessage2">Connection to robot crawler :</h3> 
+        </div>
+
+        <div class="container-fluid text-center mb-4 titlepage">
+            <div class="spinner-border text-dark"></div>
+            <div class="spinner-border text-muted"></div>
+            <div class="spinner-border text-primary"></div>
+            <div class="spinner-border text-info"></div>
+            <div class="spinner-border text-info"></div>
+            <div class="spinner-border text-primary"></div>
+            <div class="spinner-border text-muted"></div>
+            <div class="spinner-border text-dark"></div>
+            
+        </div>
+        <div  class="container-fluid text-center mb-4 titlepage">
+            <p id="connectionWait">Impossible to connect.
+            A person is already connected to the crawler robot.
+            Try to connect again :</p>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col"></div>
+            <div class="col" id="buttonConnection2"><button type="button" class="btn btn-success on btn_on_off go myButtonConnection my myButtonGO depth3" onclick="connection()" >Connection</button></div>
+            <div class="col"></div>
+            
+        </div>
+    </div>
+    <div class="container-fluid text-center mb-4 titlepage">
+        <h3 id="MaC" class="d-none">Manual Controlling</h3> 
+        <h3 id="AdC" class="d-none">Advanced Controlling</h3>   
+        <h3 id="AuC" class="d-none">Automatic Controlling</h3> 
+    </div>
+
+    <div class="row d-none" style="margin-top: -1%;" id="page">
+        <!--manual controlling-->
+        <div class="w3-col  m12 l4" id="col11">
+            <form class="text">
+                <div class="row marginleft5">
+                    <div class=" w3-col4  m12 l4">
+                        <h5 >Crawler ON</h5>
+                    </div>
+                    <div class="w3-col8  m12 l8 marginleft5">
+                        <i class='fas fa-power-off redcolor' id="on_off_color_manual" style='font-size:24px;'></i>
+                    </div>
+                </div>
+                
+                <div class="row marginleft5">
+                    <div class="w3-col4  m12 l4">Crawler hour :</div>
+                    <div class="w3-col8  m12 l8 marginleft5" id="hourManual"></div>
+                </div>
+                <div class="row marginleft5">
+                    <div class="w3-col  m12 l4 ">Times [s] :</div>
+                    <div class="w3-col  m12 l8 ">
+                        <div class="types">
+                            <div class="container">
+                                <div class="control">
+                                    <div id="shape" class="timer"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+
+                <div class="row marginleft5 ">
+                    <div class="w3-col  m12 l4 ">
+                        <div Value: class="slidecontainer" id="slider">
+                            <input id="speed_manual" type="range" min="0" max="100" value="50" class="bar" >
+                            <span class="highlight"></span>
+                        </div>
+                        <div class="row">
+                            <p class ="value-slider " id="speedshow">Speed [%] : <span id="demo"></span></p>
+                        </div>
+                    </div>
+                    <div class="w3-col  m12 l8">
+                        <div class="row forward">
+
+                            <button type="button" id="forward" class="btn btn-outline-secondary btn-sm direction" style='font-size:20px' name="dir", value="forward" onclick="direction1('forward')"><i id="icoforward" class='fas fa-arrow-up'></i></button>
+
+                        </div>
+                        <div class="row">
+                            <div class="col left">
+                                <button type="button" id="left" class="btn btn-outline-secondary btn-sm direction" style='font-size:20px' name="dir", value="left" onclick="direction1('left')"><i id="icoleft" class='fas fa-arrow-left'></i></button>
+                            </div>
+                            <div class="col ">
+                                <button type="button" id="right" class="btn btn-outline-secondary btn-sm direction right-dir" style='font-size:20px' name="dir", value="right" onclick="direction1('right')"><i id="icoright" class='fas fa-arrow-right'></i></button>
+                            </div>
+                        </div>
+                            <div class="row forward">
+                                <button type="button" id="backward" class="btn btn-outline-secondary btn-sm direction" style='font-size:20px' name="dir", value="backward" onclick="direction1('backward')"><i id="icobackward" class='fas fa-arrow-down'></i></button>
+                            </div>
+                    </div>
+                </div>
+            
+                <div class="row marginleft5">
+                    <div class="w3-col4  m6 l6">
+                        <button type="button" class="btn btn-success on btn_on_off go myButtonGO depth1" onclick="sendval_manual_deplacement()">Go</button>
+                    </div>
+                    <div class="w3-col4  m6 l6">
+                        <button type="button" class="btn btn-danger btn_on_off myButtonSTOP depth1 stop" onclick="stop()">Stop</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+        
+
+
+
+
+        <!--advanced controlling-->
+        <div class="w3-col  m12 l4  d-none " id="col12">
+            <form class="text">
+                <div class="row marginleft5">
+                    <div class="w3-col4  m12 l4 "><h5 >Crawler ON</h5></div>
+                    <div class="w3-col8  m12 l8 marginleft5"><i class='fas fa-power-off redcolor' id="on_off_color_advanced" style='font-size:24px;'></i></div>
+                </div>
+                <div class="row marginleft5">
+                    <div class="w3-col4  m12 l4">Crawler hour :</div>
+                    <div class="w3-col8  m12 l8 marginleft5" id="hourAdvanced"></div>
+                </div>
+                <div class="row marginleft5">
+                    <div class="w3-col  m12 l4 ">Times [s] :</div>
+                    <div class="w3-col  m12 l8 ">
+                        <div class="types">
+                            <div class="container">
+                                <div class="control">
+                                    <div id="shape1" class="timer"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="slider-advanced-desktop">
+                <div class="row test marginleft5" >
+                    
+                    <div class="w3-col6  m12 l6 wait">
+                        <div Value: class="slidecontainer" id="slider_left">
+                            <input type="range"  min="0" max="100" value="50" class="bar" id="speed_left">
+                            <span class="highlight"></span>
+                        </div>
+                    </div>
+                    <div class="w3-col6  m12 l6 wait">
+                        <div Value: class="slidecontainer" id="slider_left">
+                            <input type="range" min="0" max="100" value="50" class=" bar" id="speed_right">
+                            <span class="highlight"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row motor marginleft5">
+                    <div class="w3-col6  m12 l6">Motor Left : <span id="demo_left"></span></div>
+                    <div class="w3-col6  m12 l6 marginleft5"> Motor Right : <span id="demo_right"></span></div>
+                </div>
+
+
+                </div>
+
+
+                <div id="slider-advanced-mobile">
+                    
+                    <div class="row wait">
+                        <div Value: class="slidecontainer" id="slider_left_mobile">
+                            <input type="range"  min="0" max="100" value="50" class="bar" id="speed_left_mobile">
+                            <span class="highlight"></span>
+                        </div>
+                    </div>
+                    <div class="row motor marginleft5 center">
+                        Motor Left : <span id="demo_left_mobile"></span>
+                    </div>
+                    
+                    <div class="row wait">
+                        <div Value: class="slidecontainer" id="slider_right_mobile">
+                            <input type="range" min="0" max="100" value="50" class=" bar" id="speed_right_mobile">
+                            <span class="highlight"></span>
+                        </div>
+                    </div>
+                    <div class="row marginleft5 center">
+                        Motor Right : <span id="demo_right_mobile"></span>
+                    </div>
+
+                </div>
+               
+                
+                
+                <div class="row marginleft5">
+                    <div class="w3-col6  m6 l6" id="goDesktop"><button type="button" class="btn btn-success on btn_on_off go myButtonGO depth1" onclick="sendval_advanced_deplacement()">Go</button></div>
+                    <div class="w3-col6  m6 l6" id="goMobile"><button type="button" class="btn btn-success on btn_on_off go myButtonGO depth1" onclick="sendval_advanced_deplacement_mobile()">Go</button></div>
+                    <div class="w3-col6  m6 l6"><button type="button" class="btn btn-danger btn_on_off myButtonSTOP depth1 stop" onclick="stop()">Stop</button></div>
+                </div>
+                
+
+            </form>
+
+        </div>
+
+
+
+
+
+        <!--automatic-->
+        <div class="w3-col  m12 l4  d-none " id="col13">
+            <form class="text">
+                <div class="row marginleft5">
+                    <div class="w3-col4  m12 l4 "><h5 >Crawler ON</h5></div>
+                    <div class="w3-col4  m12 l8 marginleft5"><i class='fas fa-power-off redcolor' id="on_off_color_automatic" style='font-size:24px;'></i></div>
+                </div>
+                <div class="row marginleft5">
+                    <div class="w3-col4  m12 l4">Crawler hour :</div>
+                    <div class="w3-col8  m12 l8 marginleft5" id="hourAutomatic"></div>
+                </div>
+                <div class="row marginleft5">
+                    <div class="w3-col  m12 l4"><h5>Parameters :</h5></div>
+                </div>
+                <div class="row marginleft5">
+                    <table class="table table-bordered table-dark table-striped input_min" id="myTable">
+                        <thead>
+                        <tr>
+                            <th>Step</th>
+                            <th>Times[s]</th>
+                            <th>Motor right [%]</th>
+                            <th>Motor left [%]</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><input type="number" id='time1' name="time" min="0" max="100" class="input_min"></td>
+                            <td> <input type="number" id='speed11' name="spedd1" min="-100" max="100" class="input_min"></td>
+                            <td> <input type="number"  id='speed21' name="spedd2" min="-100" max="100" class="input_min"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><input type="number" id='time2' name="time" min="0" max="100" class="input_min"></td>
+                            <td> <input type="number" id='speed12' name="spedd1" min="-100" max="100" class="input_min"></td>
+                            <td> <input type="number" id='speed22' name="spedd2" min="-100" max="100" class="input_min"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><input type="number" id='time3' name="time" min="0" max="100" class="input_min"></td>
+                            <td> <input type="number" id='speed13' name="spedd1" min="-100" max="100" class="input_min"></td>
+                            <td> <input type="number"  id='speed23' name="spedd2" min="-100" max="100" class="input_min"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row marginleft5">
+                    <button type="button" class="btn btn-secondary buttonAutomatic depth2 " onclick="add()">ADD</button>
+                    <button type="button" class="btn btn-secondary buttonAutomatic depth2" onclick="remove()">REMOVE</button>
+                    <button type="reset" class="btn btn-secondary buttonAutomatic depth2">RESET</button>
+                </div>
+                <div class="row space marginleft5">
+                    <div class="w3-col6  m6 l6"><button type="button" class="btn btn-success on btn_on_off myButtonGO depth1" onclick="sendval_automatic_deplacement()">Go</button></div>
+                    <div class="w3-col6  m6 l6"><button type="button" class="btn btn-danger btn_on_off myButtonSTOP depth1 stop" onclick="stop()">Stop</button></div>
+                </div>
+            </form>
+        </div>
+        
+
+
+        <!--zone 2-->
+        <div class="w3-col  m12 l4">
+            <form class="text">
+            <div class="row marginleft5">
+                <div class=" "><h5>Light :</h5></div>
+                   
+                    <span class="switch">
+                        <span class="switch-border1">
+                            <span class="switch-border2">
+                                <input id="switch1" type="checkbox" checked />
+                                <label for="switch1"></label>
+                                <span class="switch-top"></span>
+                                <span class="switch-shadow"></span>
+                                <span class="switch-handle"></span>
+                                <span class="switch-handle-left"></span>
+                                <span class="switch-handle-right"></span>
+                                <span class="switch-handle-top"></span>
+                                <span class="switch-handle-bottom"></span>
+                                <span class="switch-handle-base"></span>
+                                <span class="switch-led switch-led-green">
+                                    <span class="switch-led-border">
+                                        <span class="switch-led-light">
+                                            <span class="switch-led-glow"></span>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="switch-led switch-led-red">
+                                    <span class="switch-led-border">
+                                        <span class="switch-led-light">
+                                        <span class="switch-led-glow"></span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                  </span>
+               
+                
+                
+            </div>
+            <div class="row marginleft5">
+                <div class="w3-col  m12 l4">
+                 Direction :
+            </div>
+            </div>
+            <div class="row marginleft5">
+                <canvas id="compass" width="200" height="200" class="compass"></canvas>
+            </div>
+            <div class="row marginleft5"> <div class="col"><span class="badge badge-light compassvalue" id="compassread"> 000 </span></div></div>
+            <div class="row marginleft5"><h5>New direction :</h5></div>
+            <div class="row marginleft5">
+                <div class="w3-col  m12 l4"><h5>Value :</h5></div>
+                <div class="w3-col  m12 l8">
+                <div class="types">
+                    <div class="container">
+                        <div class="control">
+                            <div id="shape2" class="direc"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row marginleft5">
+                <div class="w3-col  m12 l12">
+                    <button type="button" class="btn btn-success btn_on_off myButtonGO compassButton depth1" onclick="compassaction()">Go</button>
+                </div>
+            </div>
+
+
+        </form>
+        </div>
+
+        <!--zone 3-->
+        <div class="w3-col  m12 l4 ">
+            <div class="text">
+            <div class="row marginleft5"><h5 class="">Camera</h5></div>
+            <div class="row marginleft5"><iframe class="embed-responsive-item video" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe></div>
+            <div class="row marginleft5">log</div>
+            <div class="row marginleft5"><div class="container bg-light text-dark log" id="affichage_log">
+                <p>log</p>
+            </div></div>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+    </body>
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css.css">
+    </html>

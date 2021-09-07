@@ -1,0 +1,44 @@
+Initialisation du GPIO 3
+Initialisation du GPIO 3
+100.1
+True
+*************************************deco***********************************
+True
+False
+error
+2020/5/6 /13/18/38Client send :/order:1/Time:1/Speed:50/Direction:undefined:
+2020/5/6 /13/18/43Client send :/order:2/Time:1/Speed:50/Direction:forward:
+GPIO 239 direction : forward
+GPIO 237 direction : backward
+PWM Right speed : 50
+PWM Left speed : 50
+2020/05/06 /13/18/46Crawler send :/order:2/Time:1/speed:50/direction:forward
+True
+2020/05/06 /13/18/46Crawler send :/order:2/Time:1/speed:50/direction:forward
+GPIO 239 direction : forward
+GPIO 237 direction : backward
+PWM Right speed : 0
+PWM Left speed : 0
+2020/05/06 /13/18/47Crawler send :/order:2 END
+100.1
+Initialisation du GPIO 3
+Initialisation du GPIO 3
+True
+*************************************deco***********************************
+100.1
+True
+*************************************deco***********************************
+100.1
+True
+*************************************deco***********************************
+100.1
+True
+*************************************deco***********************************
+100.1
+True
+*************************************deco***********************************
+True
+*************************************deco***********************************
+True
+*************************************deco***********************************
+True
