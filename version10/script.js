@@ -10,7 +10,7 @@
  * - sendval_automatic_deplacement()
  * - sendval_advanced_deplacement()
  * - sendval_advanced_deplacement_mobile()
- * - copass()
+ * - compass()
  * - hour()
  * - compassaction()
  * - test_recpetion()
@@ -28,10 +28,13 @@
 
 //global variable
 var nborder = 0; //order number
-var direction; // robot directin (forward, backward, right, left)
+var lights; //robots lights
+var direction; // robot direction (forward, backward, right, left)
 var angle; //north angle
 //MODIFICAT 26/01/2021
-var IP_adresse = '192.168.2.113'
+//var IP_adresse = '192.168.2.113'
+//MODIFICAT 29/09/2021
+var IP_adresse = '192.168.1.2'
 //MODIFICAT 23/10/2020 12:21
 //var IP_adresse = '147.83.159.170'
 var port = '5001'
@@ -203,6 +206,26 @@ function date(){
     return theDate;
 }
 
+/*************************************************************************************************
+log_lights()
+
+description:
+returns a list containing the executed order and the order number for lights
+
+parameter:
+    - time 
+    - lights
+
+return:
+    -[order number, order]
+************************************************************************************************** */
+function log_lights(time, lights){
+    nborder +=1	;
+    theDate =date();
+    var order = theDate + "Client send :/order:"+nborder+"/Time:"+time+"/Lights:" ;
+    var infos=[nborder, order];
+    return infos;
+}
 
 /*************************************************************************************************
 log_manual()
@@ -289,6 +312,51 @@ function add_log(text){
 
     var element = document.getElementById("affichage_log");
     element.appendChild(para); 
+}
+
+/*************************************************************************************************
+sendval_lights()
+
+description:
+retrieve the parameter (lights) from the web page, 
+send the request if the parameters are complete
+show response in logs
+
+parameter:
+    none
+
+return:
+    none
+************************************************************************************************** */
+function sendval_lights(){
+    var time_value = $("#shape").roundSlider("getValue");
+    var lights_value = document.getElementById("lights").value;
+    if (time_value != '' & lights_value!='' ){
+        var info = log_lights(time_value, lights_value);
+        var order = info[1];
+        var nborder = info[0];
+
+        add_log(order);
+        var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights?time='+ time_value +'&lights=' + lights_value +'&order='+order+'&nborder='+nborder;
+                var request = new XMLHttpRequest();
+                console.log(request)
+                request.open('GET', requestURL);
+                request.responseType = 'text';
+                request.send();
+                test_reception();
+
+            
+                request.onload = function() {
+                    var res = request.response;
+                    add_log(res);
+                }
+    }
+    else {
+        var theDate=date();
+        var order = theDate + "Client send : missing arguments";
+        add_log(order)
+    }
+    
 }
 
 /*************************************************************************************************
@@ -416,14 +484,16 @@ function sendval_advanced_deplacement(){
         var order = info[1];
         var nborder = info[0];
         add_log(order);
-		//MODIFICAT 23/10/2020 12:21
-	var requestURL = 'http://147.83.159.170:'+port+'/api/advanced/deplacement?time='+time+'&speed1='+speed1+'&speed2='+speed2+"&nborder="+nborder+"&order="+order
+		//MODIFICAT 5/10/2021 
+	    var requestURL = 'http://'+IP_adresse+':'+port+'/api/advanced/deplacement?time='+time+'&speed1='+speed1+'&speed2='+speed2+"&nborder="+nborder+"&order="+order;
+	    console.log(requestURL);
+	    
         //var requestURL = 'http://192.168.43.118:'+port+'/api/advanced/deplacement?time='+time+'&speed1='+speed1+'&speed2='+speed2+"&nborder="+nborder+"&order="+order
             var request = new XMLHttpRequest();
                 request.open('GET', requestURL);
                 request.responseType = 'text';
                 request.send();
-                test_reception();
+            test_reception();
             
                 request.onload = function() {
                     var res = request.response;
@@ -590,7 +660,7 @@ function compassaction(){
 }
 
 /*************************************************************************************************
-test_recpetion()
+test_recepetion()
 
 description:
 to send with a second request, to verify that this second is well received by the API
@@ -948,7 +1018,7 @@ window.onbeforeunload = function(){
     if (e) {
         if(this.accessWebPage == 0){
 			//MODIFICAT 26/01/2021
-			var requestURL = 'http://147.83.159.165:5001/api/deconnection';			
+			var requestURL = 'http://'+IP_adresse+':'+port+'/api/deconnection';			
             //MODIFICAT 23/10/2020 12:21
 			//var requestURL = 'http://147.83.159.170:5000/api/deconnection';
             //var requestURL = 'http://192.168.43.118:5000/api/deconnection';
