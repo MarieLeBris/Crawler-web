@@ -139,24 +139,73 @@ navbar
         <h3 id="AdC" class="d-none">Advanced Controlling</h3>   
         <h3 id="AuC" class="d-none">Automatic Controlling</h3> 
     </div>
+<!-- ---------------------------------------------------------------------------------------Main Page ----------------------------------------------------------------------------------------------------->
 
     <div class="row d-none" style="margin-top: -1%;" id="page">
-        <!--manual controlling-->
-        <div class="w3-col  m12 l4" id="col11">
+
+        <div class="w3-col  m12 l4 ">
+            <div class="dodo">
             <form class="text">
-                <div class="row marginleft5">
-                    <div class=" w3-col4  m12 l4">
+
+                 <div class="row marginleft5">
+                    <div class=" w3-col2  m12 l4">
                         <h5 >Crawler ON</h5>
                     </div>
-                    <div class="w3-col8  m12 l8 marginleft5">
-                        <i class='fas fa-power-off redcolor' id="on_off_color_manual" style='font-size:24px;'></i>
+                    <div class="w3-col4  m12 l4 marginleft2">
+                        <i class='fas fa-power-off redcolor' id="on_off_color" style='font-size:24px;'></i>
                     </div>
-                </div>
-                
-                <div class="row marginleft5">
-                    <div class="w3-col4  m12 l4">Crawler hour :</div>
-                    <div class="w3-col8  m12 l8 marginleft5" id="hourManual"></div>
-                </div>
+<!-----------------------------------------------------------------------------------On/OFF SWITCH MOTORS------------------------------------------------------------------------------------------------->
+                    <div class=" w3-col2  m12 l4 marginleft5">
+                        <h5>Motors:</h5>
+                    </div>
+                    <div class="w3-col4  m12 l4 ">
+                        <span class="switch">
+                            <span class="switch-border1">
+                                <span class="switch-border2">
+                                    <input id="switch2" type="checkbox" class="btn swtich2 on_off" onclick="IO2_motors()"/>
+                                    <label for="switch2"></label>
+                                    <span class="switch-top"></span>
+                                    <span class="switch-shadow"></span>
+                                    <span class="switch-handle"></span>
+                                    <span class="switch-handle-left"></span>
+                                    <span class="switch-handle-right"></span>
+                                    <span class="switch-handle-top"></span>
+                                    <span class="switch-handle-bottom"></span>
+                                    <span class="switch-handle-base"></span>
+                                    <span class="switch-led switch-led-green">
+                                        <span class="switch-led-border">
+                                            <span class="switch-led-light">
+                                                <span class="switch-led-glow"></span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="switch-led switch-led-red">
+                                        <span class="switch-led-border">
+                                            <span class="switch-led-light">
+                                                <span class="switch-led-glow"></span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+
+<!--------------------------END ON/OFF---------------------------------------->
+
+                 </div>
+
+                 <div class="row marginleft5">
+                     <div class="w3-col4  m12 l4">Crawler clock :</div>
+                     <div class="w3-col8  m12 l8 marginleft5" id="hour"></div>
+                 </div>
+            </form>
+        </div>
+
+        
+        <!--manual controlling-->
+        <div class="mode d-none " id="col11">
+            <form class="text">
                 <div class="row marginleft5">
                     <div class="w3-col  m12 l4 ">Times [s] :</div>
                     <div class="w3-col  m12 l8 ">
@@ -171,7 +220,7 @@ navbar
                     </div>
                     
                 </div>
-                
+
 
                 <div class="row marginleft5 ">
                     <div class="w3-col  m12 l4 ">
@@ -213,25 +262,19 @@ navbar
                 </div>
                 
             </form>
-        </div>
+    </div>
+    
         
 
 
 
 
         <!--advanced controlling-->
-        <div class="w3-col  m12 l4  d-none " id="col12">
+        <div class="mode d-none" id="col12">
             <form class="text">
                 <div class="row marginleft5">
-                    <div class="w3-col4  m12 l4 "><h5 >Crawler ON</h5></div>
-                    <div class="w3-col8  m12 l8 marginleft5"><i class='fas fa-power-off redcolor' id="on_off_color_advanced" style='font-size:24px;'></i></div>
-                </div>
-                <div class="row marginleft5">
-                    <div class="w3-col4  m12 l4">Crawler hour :</div>
-                    <div class="w3-col8  m12 l8 marginleft5" id="hourAdvanced"></div>
-                </div>
-                <div class="row marginleft5">
                     <div class="w3-col  m12 l4 ">Times [s] :</div>
+                    <!--Round slider for time-->
                     <div class="w3-col  m12 l8 ">
                         <div class="types">
                             <div class="container">
@@ -261,13 +304,13 @@ navbar
                         </div>
                     </div>
                 </div>
-                <div class="row motor marginleft5">
+                <div class="row motor marginleft2">
                     <div class="w3-col6  m12 l6">Motor Left : <span id="demo_left"></span></div>
                     <div class="w3-col6  m12 l6 marginleft5"> Motor Right : <span id="demo_right"></span></div>
                 </div>
 
 
-                </div>
+                </div>-
 
 
                 <div id="slider-advanced-mobile">
@@ -304,24 +347,14 @@ navbar
                 
 
             </form>
-
-        </div>
-
+    </div>
 
 
 
 
         <!--automatic-->
-        <div class="w3-col  m12 l4  d-none " id="col13">
+        <div class="mode d-none " id="col13">
             <form class="text">
-                <div class="row marginleft5">
-                    <div class="w3-col4  m12 l4 "><h5 >Crawler ON</h5></div>
-                    <div class="w3-col4  m12 l8 marginleft5"><i class='fas fa-power-off redcolor' id="on_off_color_automatic" style='font-size:24px;'></i></div>
-                </div>
-                <div class="row marginleft5">
-                    <div class="w3-col4  m12 l4">Crawler hour :</div>
-                    <div class="w3-col8  m12 l8 marginleft5" id="hourAutomatic"></div>
-                </div>
                 <div class="row marginleft5">
                     <div class="w3-col  m12 l4"><h5>Parameters :</h5></div>
                 </div>
@@ -367,11 +400,17 @@ navbar
                     <div class="w3-col6  m6 l6"><button type="button" class="btn btn-danger btn_on_off myButtonSTOP depth1 stop" onclick="stop()">Stop</button></div>
                 </div>
             </form>
-        </div>
         
+    
+       
+    </div>
+    </div>
 
 
         <!--zone 2-->
+        
+<!-----------------------------------------------------LIGHTS------------------------------------------------------------->
+
         <div class="w3-col  m12 l4">
             <form class="text">
             <div class="row marginleft5">
@@ -380,7 +419,7 @@ navbar
                     <span class="switch">
                         <span class="switch-border1">
                             <span class="switch-border2">
-                                <input id="switch1" type="checkbox" checked class="btn swtich1 on_off" onclick="sendval_lights()"/>
+                                <input id="switch1" type="checkbox" class="btn swtich1 on_off" onclick="sendval_lights() "/>
                                 <label for="switch1"></label>
                                 <span class="switch-top"></span>
                                 <span class="switch-shadow"></span>
@@ -411,6 +450,7 @@ navbar
                 
                 
             </div>
+<!----------------------------------------------------- END LIGHTS------------------------------------------------------------->
             <div class="row marginleft5">
                 <div class="w3-col  m12 l4">
                  Direction :

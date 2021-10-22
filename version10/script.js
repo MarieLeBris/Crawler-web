@@ -1,4 +1,3 @@
-
 /******************************************************************************************
  * function liste:
  * - date()
@@ -28,7 +27,6 @@
 
 //global variable
 var nborder = 0; //order number
-var lights; //robots lights
 var direction; // robot direction (forward, backward, right, left)
 var angle; //north angle
 //MODIFICAT 26/01/2021
@@ -182,13 +180,10 @@ $(document).ready(function () {
 
 /*************************************************************************************************
 date()
-
 description:
 returns the date in format year/month/day/hour/minute/second
-
 parameter:
 none
-
 return:
 the current date
 ************************************************************************************************** */
@@ -207,37 +202,13 @@ function date(){
 }
 
 /*************************************************************************************************
-log_lights()
-
-description:
-returns a list containing the executed order and the order number for lights
-
-parameter:
-    - time 
-    - lights
-
-return:
-    -[order number, order]
-************************************************************************************************** */
-function log_lights(time, lights){
-    nborder +=1	;
-    theDate =date();
-    var order = theDate + "Client send :/order:"+nborder+"/Time:"+time+"/Lights:" ;
-    var infos=[nborder, order];
-    return infos;
-}
-
-/*************************************************************************************************
 log_manual()
-
 description:
 returns a list containing the executed order and the order number for manual mode
-
 parameter:
     - time , duration of the action 
     - speed , speed in percent of motors
     - direction , crawler direction
-
 return:
     -[order number, order]
 ************************************************************************************************** */
@@ -251,15 +222,12 @@ function log_manual(time, speed, direction){
 
 /*************************************************************************************************
 log_advanced()
-
 description:
 returns a list containing the executed order and the order number for manual mode
-
 parameter:
     - time , duration of the action
     - speed1 , speed in percent of motor right
     - speed1 , speed in percent of motor left
-
 return:
     - [order number, order]
 ************************************************************************************************** */
@@ -273,13 +241,10 @@ function log_avanced(time, speed1, speed2){
 
 /*************************************************************************************************
 log_automatic()
-
 description:
 returns a list containing the executed order and the firts order number  and last oder number for automatic mode
-
 parameter:
     none
-
 return:
     - [first order number, last oder number, order]
 ************************************************************************************************** */
@@ -295,13 +260,10 @@ function log_automatic(){
 }
 /*************************************************************************************************
 add_log()
-
 description:
 add a text in the log div
-
 parameter:
     - text, text to display
-
 return:
     none
 ************************************************************************************************** */
@@ -316,60 +278,68 @@ function add_log(text){
 
 /*************************************************************************************************
 sendval_lights()
-
 description:
 retrieve the parameter (lights) from the web page, 
 send the request if the parameters are complete
 show response in logs
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
 function sendval_lights(){
-    var time_value = $("#shape").roundSlider("getValue");
-    var lights_value = document.getElementById("lights").value;
-    if (time_value != '' & lights_value!='' ){
-        var info = log_lights(time_value, lights_value);
-        var order = info[1];
-        var nborder = info[0];
+    var lights_value = document.getElementById("switch1");
+    
+    
+    if (lights_value!='' ){
+        
+        if (lights_value.checked == true){
 
-        add_log(order);
-        var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights?time='+ time_value +'&lights=' + lights_value +'&order='+order+'&nborder='+nborder;
-                var request = new XMLHttpRequest();
-                console.log(request)
-                request.open('GET', requestURL);
-                request.responseType = 'text';
-                request.send();
-                test_reception();
+            var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights_on';
+            var request = new XMLHttpRequest();
+            console.log(request)
+            request.open('GET', requestURL);
+            request.responseType = 'text';
+            request.send();
+            test_reception();
 
             
-                request.onload = function() {
-                    var res = request.response;
-                    add_log(res);
-                }
-    }
-    else {
-        var theDate=date();
-        var order = theDate + "Client send : missing arguments";
-        add_log(order)
+            request.onload = function() {
+            var res = request.response;
+            add_log(res);
+            }
+          } 
+          else {
+            
+            var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights_off';
+            var request = new XMLHttpRequest();
+            console.log(request)
+            request.open('GET', requestURL);
+            request.responseType = 'text';
+            request.send();
+            test_reception();
+
+            request.onload = function() {
+            var res = request.response;
+            add_log(res);
+            }
+        //si checkbox true, envoyer a l'api un identifiant "on"
+        
+        }
+
+        
     }
     
 }
 
 /*************************************************************************************************
 sendval_manual_deplacement()
-
 description:
 retrieve the parameters (time, speed and direction values) from the web page, 
 send the request if the parameters are complete
 show response in logs
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -405,15 +375,12 @@ function sendval_manual_deplacement(){
 
 /*************************************************************************************************
 sendval_automatic_deplacement()
-
 description:
 retrieve the parameters (time, and speeds) from the web page, 
 send the request if the parameters are complete
 show response in logs
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -463,15 +430,12 @@ function sendval_automatic_deplacement(){
 }
 /*************************************************************************************************
 sendval_advanced_deplacement()
-
 description:
 retrieve the parameters (time, and speeds) from the web page (desktop), 
 send the request if the parameters are complete
 show response in logs
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -510,15 +474,12 @@ function sendval_advanced_deplacement(){
 
 /*************************************************************************************************
 sendval_advanced_deplacement_mobile()
-
 description:
 retrieve the parameters (time, and speeds) from the web page (mobile), 
 send the request if the parameters are complete
 show response in logs
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -552,14 +513,11 @@ function sendval_advanced_deplacement_mobile(){
 }
 /*************************************************************************************************
 compass())
-
 description:
 send a request to ask for direction (angle to north).
 it takes place every 1 second
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -585,14 +543,11 @@ function compass(){
 
 /*************************************************************************************************
 hour())
-
 description:
 send a request to ask for crawler hour
 it takes place every 1 second
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -606,9 +561,7 @@ function hour() {
     request.onload = function() {
         var hour = request.response;
         console.log();
-        document.getElementById("hourManual").innerHTML = hour;
-        document.getElementById("hourAdvanced").innerHTML = hour;
-        document.getElementById("hourAutomatic").innerHTML = hour;
+        document.getElementById("hour").innerHTML = hour;
 
         
 
@@ -620,15 +573,12 @@ function hour() {
 
 /*************************************************************************************************
 compassaction()
-
 description:
 retrieve the parameters (time, and speeds) from the web page, 
 send the request if the parameters are complete
 show response in logs
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -661,13 +611,10 @@ function compassaction(){
 
 /*************************************************************************************************
 test_recepetion()
-
 description:
 to send with a second request, to verify that this second is well received by the API
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -686,13 +633,10 @@ function test_reception(){
 
 /*************************************************************************************************
 stop()
-
 description:
 stop the current action
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -710,16 +654,56 @@ function stop(){
       }
 }
 
+
+/*************************************************************************************************
+stop()
+description:
+stop the current action
+parameter:
+    none
+return:
+    none
+************************************************************************************************** */
+function IO2_motors(){
+    //test_reception()
+    var motors_value = document.getElementById("switch2");
+
+    if (motors_value!='' ){
+        if (motors_value.checked==true){
+
+            var requestURL = 'http://'+IP_adresse+':'+port+'/api/IO2_on';
+            var request = new XMLHttpRequest();
+            request.open('GET', requestURL);
+            request.responseType = 'text';
+            request.send();
+
+            request.onload = function() {
+                var res = request.response;
+                add_log(res);
+            }
+        }
+        else {
+            var requestURL = 'http://'+IP_adresse+':'+port+'/api/IO2_off';
+            var request = new XMLHttpRequest();
+            request.open('GET', requestURL);
+            request.responseType = 'text';
+            request.send();
+
+            request.onload = function() {
+                var res = request.response;
+                add_log(res);
+            }
+        }
+    }
+}
+
 /*************************************************************************************************
 connectionTest()
-
 description:
 test the connection with API
 change the color of the connection indicator
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -734,21 +718,13 @@ function connnectionTest(){
     request.onload = function(){
         var theDate = date();
         message = theDate + " connection established";
-        document.getElementById("on_off_color_manual").classList.remove("redcolor");
-        document.getElementById("on_off_color_manual").classList.add("greencolor");
-        document.getElementById("on_off_color_advanced").classList.remove("redcolor");
-        document.getElementById("on_off_color_advanced").classList.add("greencolor");
-        document.getElementById("on_off_color_automatic").classList.remove("redcolor");
-        document.getElementById("on_off_color_automatic").classList.add("greencolor");
+        document.getElementById("on_off_color").classList.remove("redcolor");
+        document.getElementById("on_off_color").classList.add("greencolor");
     }
 
     request.ontimeout = function (e) {
-        document.getElementById("on_off_color_manual").classList.add("redcolor");
-        document.getElementById("on_off_color_manual").classList.remove("greencolor");
-        document.getElementById("on_off_color_advanced").classList.add("redcolor");
-        document.getElementById("on_off_color_advanced").classList.remove("greencolor");
-        document.getElementById("on_off_color_automatic").classList.add("redcolor");
-        document.getElementById("on_off_color_automatic").classList.remove("greencolor");
+        document.getElementById("on_off_color").classList.add("redcolor");
+        document.getElementById("on_off_color").classList.remove("greencolor");
       };
     
 
@@ -763,14 +739,11 @@ function connnectionTest(){
 var nb_ligne = 3;
 /*************************************************************************************************
 add()
-
 description:
 test the connection with API
 add a line in the automatic mode table
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -790,14 +763,11 @@ function add() {
 
 /*************************************************************************************************
 remove()
-
 description:
 test the connection with API
 remove the last line in the automatic mode table
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -811,68 +781,59 @@ function remove(){
 
 /*************************************************************************************************
 hideandshowmanual()
-
 description:
 hide advanced and automatic mode page
 show manaul mode page
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
 function hideandshowmanual(){
     if (accessWebPage == 0){
-    document.getElementById("col11").classList.remove('d-none');
-    document.getElementById("col12").classList.add('d-none');
-    document.getElementById("col13").classList.add('d-none');
-    document.getElementById("navbar1").classList.add('active');
-    document.getElementById("navbar2").classList.remove('active');
-    document.getElementById("navbar3").classList.remove('active');
-    document.getElementById("MaC").classList.remove('d-none');
-    document.getElementById("AdC").classList.add('d-none');
-    document.getElementById("AuC").classList.add('d-none');
+        document.getElementById("col11").classList.remove('d-none');
+        document.getElementById("col12").classList.add('d-none');
+        document.getElementById("col13").classList.add('d-none');
+        document.getElementById("navbar1").classList.add('active');
+        document.getElementById("navbar2").classList.remove('active');
+        document.getElementById("navbar3").classList.remove('active');
+        document.getElementById("MaC").classList.remove('d-none');
+        document.getElementById("AdC").classList.add('d-none');
+        document.getElementById("AuC").classList.add('d-none');
     }
 }
 
 /*************************************************************************************************
 hideandshowadvanced()
-
 description:
 hide manual and automatic mode page
 show advanced mode page
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
 function hideandshowadavnced(){
     if(accessWebPage == 0){
-    document.getElementById("col12").classList.remove('d-none');
-    document.getElementById("col11").classList.add('d-none');
-    document.getElementById("col13").classList.add('d-none');
-    document.getElementById("navbar2").classList.add('active');
-    document.getElementById("navbar1").classList.remove('active');
-    document.getElementById("navbar3").classList.remove('active');
-    document.getElementById("MaC").classList.add('d-none');
-    document.getElementById("AdC").classList.remove('d-none');
-    document.getElementById("AuC").classList.add('d-none');
+        document.getElementById("col12").classList.remove('d-none');
+        document.getElementById("col11").classList.add('d-none');
+        document.getElementById("col13").classList.add('d-none');
+        document.getElementById("navbar2").classList.add('active');
+        document.getElementById("navbar1").classList.remove('active');
+        document.getElementById("navbar3").classList.remove('active');
+        document.getElementById("MaC").classList.add('d-none');
+        document.getElementById("AdC").classList.remove('d-none');
+        document.getElementById("AuC").classList.add('d-none');
     }
 }
 
 /*************************************************************************************************
 hideandshowautmatic()
-
 description:
 hide advanced and manual mode page
 show automatic mode page
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -894,13 +855,10 @@ function hideandshowautomatic(){
 
 /*************************************************************************************************
 direction1()
-
 description:
 management of the 4 manual mode direction buttons
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -918,15 +876,12 @@ function direction1(id){
     document.getElementById('ico'+id).classList.add('ico');
 }
 
+
 /*************************************************************************************************
 connection()
-
 description:
-
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */
@@ -947,6 +902,7 @@ function connection(){
             document.getElementById("pageoccuper").classList.add('d-none');
             document.getElementById("page").classList.remove('d-none');
             document.getElementById("MaC").classList.remove('d-none');
+            document.getElementById("col11").classList.remove('d-none');
             document.getElementById("decobuton").classList.remove('d-none');
             
 
@@ -963,13 +919,9 @@ function connection(){
 
 /*************************************************************************************************
 deconnection()
-
 description:
-
-
 parameter:
     none
-
 return:
     none
 ************************************************************************************************** */

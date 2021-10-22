@@ -484,7 +484,7 @@ h3{
 .wait{
     background-color: none;
     height: 60%;
-    margin-top: 8%;
+    margin-top: 2%;
 }
 
 /***Switch light***/
@@ -1025,6 +1025,11 @@ h3{
 .marginleft5{
 	margin-left: 5%;
 }
+
+.marginleft2{
+	margin-left: 2%;
+}
+
 
 .rota {
 	-webkit-transform: rotateZ(0deg)!important; 
