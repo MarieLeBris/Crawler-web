@@ -295,7 +295,7 @@ function sendval_lights(){
         
         if (lights_value.checked == true){
 
-            var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights_on';
+            var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights_off';
             var request = new XMLHttpRequest();
             console.log(request)
             request.open('GET', requestURL);
@@ -311,7 +311,7 @@ function sendval_lights(){
           } 
           else {
             
-            var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights_off';
+            var requestURL = 'http://'+IP_adresse+':'+port+'/api/lights_on';
             var request = new XMLHttpRequest();
             console.log(request)
             request.open('GET', requestURL);
@@ -323,7 +323,6 @@ function sendval_lights(){
             var res = request.response;
             add_log(res);
             }
-        //si checkbox true, envoyer a l'api un identifiant "on"
         
         }
 
@@ -538,8 +537,80 @@ function compass(){
     }
 	//MODIFICAT 09/10/2020 10:41
 	//setTimeout(compass, 2000);
-    setTimeout(compass, 4000);
+    setTimeout(compass, 3000);
 }
+
+/*************************************************************************************************
+motors())
+description:
+send a request to ask for gpio state of motors IO2
+it takes place every 1 second
+parameter:
+    none
+return:
+    none
+************************************************************************************************** */
+function motors(){
+    var requestURL ='http://'+IP_adresse+':'+port+'/api/read_IO2';
+    
+    var request = new XMLHttpRequest(); // create XHR request
+    request.open('GET', requestURL); //specify HTTP method
+    request.responseType = 'text'; //waited reponse type 
+    request.send(); //execute XHR request
+    
+    request.onload = function() {
+    var motors = request.response;
+    var motors_value = document.getElementById("switch2");
+    console.log(motors);
+    document.getElementById("readIO2").innerHTML = motors;
+    if (motors=="(0, 0)"){
+        motors_value.checked=false;
+    }
+    else {
+        motors_value.checked=true
+    }
+
+}
+setTimeout(motors, 3000);
+        
+        
+    }
+
+/*************************************************************************************************
+lights())
+description:
+send a request to ask for gpio state of lights
+it takes place every 1 second
+parameter:
+    none
+return:
+    none
+************************************************************************************************** */
+function lights(){
+    var requestURL ='http://'+IP_adresse+':'+port+'/api/read_lights';
+    
+    var request = new XMLHttpRequest(); // create XHR request
+    request.open('GET', requestURL); //specify HTTP method
+    request.responseType = 'text'; //waited reponse type 
+    request.send(); //execute XHR request
+    
+    request.onload = function() {
+    var lights = request.response;
+    var lights_value = document.getElementById("switch1");
+    console.log(lights);
+    document.getElementById("readLights").innerHTML = lights;
+    if (lights=="(1, 1)"){
+        lights_value.checked=false;
+    }
+    else {
+        lights_value.checked=true
+    }
+
+}
+setTimeout(lights, 3000);
+        
+        
+    }
 
 /*************************************************************************************************
 hour())
@@ -568,7 +639,7 @@ function hour() {
     }
 	//MODIFICAT 09/10/2020 10:42
     //setTimeout(hour, 2000); 
-	setTimeout(hour, 4000);
+	setTimeout(hour, 3000);
 }
 
 /*************************************************************************************************
@@ -673,7 +744,8 @@ function IO2_motors(){
 
             var requestURL = 'http://'+IP_adresse+':'+port+'/api/IO2_on';
             var request = new XMLHttpRequest();
-            request.open('GET', requestURL);
+            //request.open('GET', requestURL);
+            request.open('POST', requestURL);
             request.responseType = 'text';
             request.send();
 
@@ -685,7 +757,8 @@ function IO2_motors(){
         else {
             var requestURL = 'http://'+IP_adresse+':'+port+'/api/IO2_off';
             var request = new XMLHttpRequest();
-            request.open('GET', requestURL);
+            //request.open('GET', requestURL);
+            request.open('POST', requestURL);
             request.responseType = 'text';
             request.send();
 
@@ -695,6 +768,7 @@ function IO2_motors(){
             }
         }
     }
+
 }
 
 /*************************************************************************************************
@@ -731,7 +805,7 @@ function connnectionTest(){
     request.send()
 	//MODIFICAT 09/10/2020 10:42
     //setTimeout(connnectionTest, 2000);
-	setTimeout(connnectionTest, 4000);
+	setTimeout(connnectionTest, 3000);
     
 }
 
@@ -960,6 +1034,8 @@ function deconnection(){
 //function execute on page change
 connnectionTest();
 compass();
+motors();
+lights();
 hour();
 
 

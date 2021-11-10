@@ -145,7 +145,7 @@ navbar
 
         <div class="w3-col  m12 l4 ">
             <div class="dodo">
-            <form class="text">
+            <form class="text", method="POST">
 
                  <div class="row marginleft5">
                     <div class=" w3-col2  m12 l4">
@@ -163,6 +163,7 @@ navbar
                             <span class="switch-border1">
                                 <span class="switch-border2">
                                     <input id="switch2" type="checkbox" class="btn swtich2 on_off" onclick="IO2_motors()"/>
+                                    <div class="w3-col8  m12 l8 marginleft5" id="readIO2"></div>
                                     <label for="switch2"></label>
                                     <span class="switch-top"></span>
                                     <span class="switch-shadow"></span>
@@ -293,13 +294,13 @@ navbar
                     
                     <div class="w3-col6  m12 l6 wait">
                         <div Value: class="slidecontainer" id="slider_left">
-                            <input type="range"  min="0" max="100" value="50" class="bar" id="speed_left">
+                            <input type="range"  min="-100" max="100" value="00" class="bar" id="speed_left">
                             <span class="highlight"></span>
                         </div>
                     </div>
                     <div class="w3-col6  m12 l6 wait">
                         <div Value: class="slidecontainer" id="slider_left">
-                            <input type="range" min="0" max="100" value="50" class=" bar" id="speed_right">
+                            <input type="range" min="-100" max="100" value="00" class=" bar" id="speed_right">
                             <span class="highlight"></span>
                         </div>
                     </div>
@@ -317,7 +318,7 @@ navbar
                     
                     <div class="row wait">
                         <div Value: class="slidecontainer" id="slider_left_mobile">
-                            <input type="range"  min="0" max="100" value="50" class="bar" id="speed_left_mobile">
+                            <input type="range"  min="-100" max="100" value="0" class="bar" id="speed_left_mobile">
                             <span class="highlight"></span>
                         </div>
                     </div>
@@ -327,7 +328,7 @@ navbar
                     
                     <div class="row wait">
                         <div Value: class="slidecontainer" id="slider_right_mobile">
-                            <input type="range" min="0" max="100" value="50" class=" bar" id="speed_right_mobile">
+                            <input type="range" min="-100" max="100" value="0" class=" bar" id="speed_right_mobile">
                             <span class="highlight"></span>
                         </div>
                     </div>
@@ -339,7 +340,7 @@ navbar
                
                 
                 
-                <div class="row marginleft5">
+                <div class="row marginleft2">
                     <div class="w3-col6  m6 l6" id="goDesktop"><button type="button" class="btn btn-success on btn_on_off go myButtonGO depth1" onclick="sendval_advanced_deplacement()">Go</button></div>
                     <div class="w3-col6  m6 l6" id="goMobile"><button type="button" class="btn btn-success on btn_on_off go myButtonGO depth1" onclick="sendval_advanced_deplacement_mobile()">Go</button></div>
                     <div class="w3-col6  m6 l6"><button type="button" class="btn btn-danger btn_on_off myButtonSTOP depth1 stop" onclick="stop()">Stop</button></div>
@@ -420,6 +421,7 @@ navbar
                         <span class="switch-border1">
                             <span class="switch-border2">
                                 <input id="switch1" type="checkbox" class="btn swtich1 on_off" onclick="sendval_lights() "/>
+                                <div class="w3-col8  m12 l8 marginleft5" id="readLights"></div>
                                 <label for="switch1"></label>
                                 <span class="switch-top"></span>
                                 <span class="switch-shadow"></span>
