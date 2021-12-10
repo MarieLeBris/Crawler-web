@@ -143,7 +143,7 @@ navbar
 
     <div class="row d-none" style="margin-top: -1%;" id="page">
 
-        <div class="w3-col  m12 l4 ">
+        <div class="w3-col  m12 l5 ">
             <div class="dodo">
             <form class="text", method="POST">
 
@@ -197,8 +197,8 @@ navbar
                  </div>
 
                  <div class="row marginleft5">
-                     <div class="w3-col4  m12 l4">Crawler clock :</div>
-                     <div class="w3-col8  m12 l8 marginleft5" id="hour"></div>
+                     <div class="w3-col4  m12 l4">Crawler clock :  </div>
+                     <div class="w3-col8  m12 l8" id="hour"></div>
                  </div>
             </form>
         </div>
@@ -208,7 +208,7 @@ navbar
         <div class="mode d-none " id="col11">
             <form class="text">
                 <div class="row marginleft5">
-                    <div class="w3-col  m12 l4 ">Times [s] :</div>
+                    <div class="w3-col  m12 l4 "><h5 >Times [s] :</h5 ></div>
                     <div class="w3-col  m12 l8 ">
                         <div class="types">
                             <div class="container">
@@ -274,7 +274,7 @@ navbar
         <div class="mode d-none" id="col12">
             <form class="text">
                 <div class="row marginleft5">
-                    <div class="w3-col  m12 l4 ">Times [s] :</div>
+                    <div class="w3-col  m12 l4 "><h5 >Times [s] :</h5 ></div>
                     <!--Round slider for time-->
                     <div class="w3-col  m12 l8 ">
                         <div class="types">
@@ -294,13 +294,13 @@ navbar
                     
                     <div class="w3-col6  m12 l6 wait">
                         <div Value: class="slidecontainer" id="slider_left">
-                            <input type="range"  min="-100" max="100" value="00" class="bar" id="speed_left">
+                            <input type="range"  min="-100" max="100" value="0" class="bar" id="speed_left">
                             <span class="highlight"></span>
                         </div>
                     </div>
                     <div class="w3-col6  m12 l6 wait">
                         <div Value: class="slidecontainer" id="slider_left">
-                            <input type="range" min="-100" max="100" value="00" class=" bar" id="speed_right">
+                            <input type="range" min="-100" max="100" value="0" class=" bar" id="speed_right">
                             <span class="highlight"></span>
                         </div>
                     </div>
@@ -412,59 +412,53 @@ navbar
         
 <!-----------------------------------------------------LIGHTS------------------------------------------------------------->
 
-        <div class="w3-col  m12 l4">
-            <form class="text">
+
+    <div class="w3-col  m12 l3">
+        <form class="text">
             <div class="row marginleft5">
                 <div class=" "><h5>Light :</h5></div>
-                   
-                    <span class="switch">
-                        <span class="switch-border1">
-                            <span class="switch-border2">
-                                <input id="switch1" type="checkbox" class="btn swtich1 on_off" onclick="sendval_lights() "/>
-                                <div class="w3-col8  m12 l8 marginleft5" id="readLights"></div>
-                                <label for="switch1"></label>
-                                <span class="switch-top"></span>
-                                <span class="switch-shadow"></span>
-                                <span class="switch-handle"></span>
-                                <span class="switch-handle-left"></span>
-                                <span class="switch-handle-right"></span>
-                                <span class="switch-handle-top"></span>
-                                <span class="switch-handle-bottom"></span>
-                                <span class="switch-handle-base"></span>
-                                <span class="switch-led switch-led-green">
-                                    <span class="switch-led-border">
-                                        <span class="switch-led-light">
-                                            <span class="switch-led-glow"></span>
-                                        </span>
+                <span class="switch">
+                    <span class="switch-border1">
+                        <span class="switch-border2">
+                            <input id="switch1" type="checkbox" class="btn swtich1 on_off" onclick="sendval_lights() "/>
+                            <div class="w3-col8  m12 l8 marginleft5" id="readLights"></div>
+                            <label for="switch1"></label>
+                            <span class="switch-top"></span>
+                            <span class="switch-shadow"></span>
+                            <span class="switch-handle"></span>
+                            <span class="switch-handle-left"></span>
+                            <span class="switch-handle-right"></span>
+                            <span class="switch-handle-top"></span>
+                            <span class="switch-handle-bottom"></span>
+                            <span class="switch-handle-base"></span>
+                            <span class="switch-led switch-led-green">
+                                <span class="switch-led-border">
+                                    <span class="switch-led-light">
+                                        <span class="switch-led-glow"></span>
                                     </span>
                                 </span>
-                                <span class="switch-led switch-led-red">
-                                    <span class="switch-led-border">
-                                        <span class="switch-led-light">
+                            </span>
+                            <span class="switch-led switch-led-red">
+                                <span class="switch-led-border">
+                                    <span class="switch-led-light">
                                         <span class="switch-led-glow"></span>
-                                        </span>
                                     </span>
                                 </span>
                             </span>
                         </span>
-                  </span>
-               
-                
-                
+                    </span>
+                </span>
             </div>
+
 <!----------------------------------------------------- END LIGHTS------------------------------------------------------------->
+
             <div class="row marginleft5">
-                <div class="w3-col  m12 l4">
-                 Direction :
-            </div>
-            </div>
-            <div class="row marginleft5">
-                <canvas id="compass" width="200" height="200" class="compass"></canvas>
-            </div>
+                <div class="w3-col  m12 l4"><h5>Direction :</h5></div></div>
+            <div class="row marginleft5"><canvas id="compass" width="200" height="200" class="compass"></canvas></div>
             <div class="row marginleft5"> <div class="col"><span class="badge badge-light compassvalue" id="compassread"> 000 </span></div></div>
             <div class="row marginleft5"><h5>New direction :</h5></div>
             <div class="row marginleft5">
-                <div class="w3-col  m12 l4"><h5>Value :</h5></div>
+                <div class="w3-col  m12 l4"><h5> </h5></div>
                 <div class="w3-col  m12 l8">
                 <div class="types">
                     <div class="container">
@@ -485,19 +479,19 @@ navbar
 
         </form>
         </div>
-
         <!--zone 3-->
         <div class="w3-col  m12 l4 ">
             <div class="text">
-            <div class="row marginleft5"><h5 class="">Camera</h5></div>
-            <div class="row marginleft5"><iframe class="embed-responsive-item video" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe></div>
-            <div class="row marginleft5">log</div>
-            <div class="row marginleft5"><div class="container bg-light text-dark log" id="affichage_log">
-                <p>log</p>
-            </div></div>
+                <div class="row margintop5">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vUb1GsVl7Ow?start=52" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="row margintop5">
+                    <div class="container bg-light text-dark log" id="affichage_log">
+                        <h5>Orders</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-      </div>
     </div>
 </div>
 
