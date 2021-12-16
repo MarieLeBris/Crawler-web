@@ -307,6 +307,8 @@ function sendval_lights(){
             request.onload = function() {
             var res = request.response;
             add_log(res);
+            document.getElementById("on_off_color_lights").classList.add("greencolor");
+            document.getElementById("on_off_color_lights").classList.remove("redcolor");
             }
           } 
           else {
@@ -322,6 +324,9 @@ function sendval_lights(){
             request.onload = function() {
             var res = request.response;
             add_log(res);
+            document.getElementById("on_off_color_lights").classList.remove("greencolor");
+            document.getElementById("on_off_color_lights").classList.add("redcolor");
+            
             }
         
         }
@@ -531,6 +536,7 @@ function compass(){
         angle = request.response;
         console.log(angle);
         document.getElementById("compassread").innerHTML = angle;
+        document.getElementById("compassread_pop").innerHTML = angle;
 
         
 
@@ -567,7 +573,7 @@ function motors(){
         motors_value.checked=false;
     }
     else {
-        motors_value.checked=true
+        motors_value.checked=true;
     }
 
 }
@@ -603,7 +609,7 @@ function lights(){
         lights_value.checked=false;
     }
     else {
-        lights_value.checked=true
+        lights_value.checked=true;
     }
 
 }
@@ -739,7 +745,7 @@ function IO2_motors(){
     //test_reception()
     var motors_value = document.getElementById("switch2");
 
-    if (motors_value!='' ){
+    if (motors_value!=''){
         if (motors_value.checked==true){
 
             var requestURL = 'http://'+IP_adresse+':'+port+'/api/IO2_on';
@@ -794,11 +800,15 @@ function connnectionTest(){
         message = theDate + " connection established";
         document.getElementById("on_off_color").classList.remove("redcolor");
         document.getElementById("on_off_color").classList.add("greencolor");
+        document.getElementById("on_off_color_pop").classList.remove("redcolor");
+        document.getElementById("on_off_color_pop").classList.add("greencolor");
     }
 
     request.ontimeout = function (e) {
         document.getElementById("on_off_color").classList.add("redcolor");
         document.getElementById("on_off_color").classList.remove("greencolor");
+        document.getElementById("on_off_color_pop").classList.remove("redcolor");
+        document.getElementById("on_off_color_pop").classList.add("greencolor");
       };
     
 
@@ -924,6 +934,22 @@ function hideandshowautomatic(){
         document.getElementById("AuC").classList.remove('d-none');
     }
 }
+
+//******************************Function for POPUP button*************************************************
+var btnPopup = document.getElementById('btnPopup');
+var overlay = document.getElementById('overlay');
+btnPopup.addEventListener('click',openMoadl);
+
+function openMoadl() {
+overlay.style.display='block';
+}
+
+var btnClose = document.getElementById('btnClose');
+btnClose.addEventListener('click',closeModal);
+function closeModal() {
+overlay.style.display='none';
+}
+//**********************************************************************************************
 
 //direction mode manual
 

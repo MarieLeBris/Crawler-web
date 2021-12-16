@@ -479,12 +479,57 @@ navbar
 
         </form>
         </div>
+
+
+
         <!--zone 3-->
         <div class="w3-col  m12 l4 ">
             <div class="text">
-                <div class="row margintop5">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vUb1GsVl7Ow?start=52" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="row margintop5" id="videoYTB">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vUb1GsVl7Ow?start=52" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay=1; controls=0; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button id="btnPopup" class="btnPopup"></button>
                 </div>
+
+                <!-- --------------------POPUP --------------------->
+                
+                <div id="overlay" class="overlay">
+                    <div id="popup" class="popup">
+                        <div>
+                            <h1><span id="btnClose" class="btnClose">&times;</span></h1>
+                        </div>
+                        <div class="w3-col l8">
+                            <iframe width="854" height="480" src="https://www.youtube.com/embed/vUb1GsVl7Ow?start=52" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay=1; controls=0; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="w3-center"><h2>Crawler reduced</h2></div>
+                        <div id="horizontalDraw"><hr></div>
+                        <div class="w3-col l1 w3-center">
+                            <i class='fas fa-power-off redcolor' id="on_off_color_pop" style='font-size:24px;'></i>
+                            <p >Crawler</p>
+                        </div>
+                        <div class="w3-col l1 w3-center">
+                            <i class='fas fa-power-off redcolor' id="on_off_color_lights" style='font-size:24px;'></i>
+                            <p>Lights</p>
+                        </div>
+                        <div class="w3-col l1 w3-center">
+                            <div class="row marginleft5"> <div class="col"><span class="badge badge-light compassvalue" id="compassread_pop"> 000 </span></div>
+                        </div>
+                        <p>Compass</p>
+                    </div>
+                    
+                    <div class="w3-col l4 w3-center">
+                        <div id="horizontalDraw"><hr></div>
+                    </div>
+                    
+                    <div class="w3-col l3 w3">
+                        <button type="button" class="btn btn-danger btn_on_off myButtonSTOP depth1 stop" onclick="stop()">Stop</button>
+                    </div>
+                    <div class="w3-col l4 w3-center">
+                        <div id="horizontalDraw"><hr></div>
+                        <h5>Camera contol</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- END POPUP -->
+
                 <div class="row margintop5">
                     <div class="container bg-light text-dark log" id="affichage_log">
                         <h5>Orders</h5>
