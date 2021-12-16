@@ -758,6 +758,8 @@ function IO2_motors(){
             request.onload = function() {
                 var res = request.response;
                 add_log(res);
+                document.getElementById("on_off_motor_lights").classList.add("greencolor");
+                document.getElementById("on_off_motor_lights").classList.remove("redcolor");
             }
         }
         else {
@@ -771,6 +773,8 @@ function IO2_motors(){
             request.onload = function() {
                 var res = request.response;
                 add_log(res);
+                document.getElementById("on_off_motor_lights").classList.remove("greencolor");
+                document.getElementById("on_off_motor_lights").classList.add("redcolor");
             }
         }
     }

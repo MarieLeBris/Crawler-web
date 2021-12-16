@@ -485,9 +485,15 @@ navbar
         <!--zone 3-->
         <div class="w3-col  m12 l4 ">
             <div class="text">
-                <div class="row margintop5" id="videoYTB">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vUb1GsVl7Ow?start=52" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay=1; controls=0; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><button id="btnPopup" class="btnPopup"></button>
+                <div>
+                    <button id="btnPopup" class="btnPopup"></button>
                 </div>
+
+                <div class="row margintop5" id="videoYTB">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/beaM6u_xdow" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                </div>
+
 
                 <!-- --------------------POPUP --------------------->
                 
@@ -497,7 +503,7 @@ navbar
                             <h1><span id="btnClose" class="btnClose">&times;</span></h1>
                         </div>
                         <div class="w3-col l8">
-                            <iframe width="854" height="480" src="https://www.youtube.com/embed/vUb1GsVl7Ow?start=52" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay=1; controls=0; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="854" height="480" src="https://www.youtube.com/embed/tC_EPCCQY-g?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="w3-center"><h2>Crawler reduced</h2></div>
                         <div id="horizontalDraw"><hr></div>
@@ -510,8 +516,12 @@ navbar
                             <p>Lights</p>
                         </div>
                         <div class="w3-col l1 w3-center">
-                            <div class="row marginleft5"> <div class="col"><span class="badge badge-light compassvalue" id="compassread_pop"> 000 </span></div>
+                            <i class='fas fa-power-off redcolor' id="on_off_motor_lights" style='font-size:24px;'></i>
+                            <p>Motors</p>
                         </div>
+                        <div class="w3-col l1 w3-center">
+                            <div class="col"><span class="badge badge-light compassvalue" id="compassread_pop"> 000 </span>
+                            </div>
                         <p>Compass</p>
                     </div>
                     
