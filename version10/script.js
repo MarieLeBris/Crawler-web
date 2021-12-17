@@ -89,7 +89,7 @@ output.innerHTML = this.value;
  ****************************************************************/
 var slider_left = document.getElementById("speed_left");
 var output_left = document.getElementById("demo_left");
-output_left.innerHTML = slider.value;
+output_left.innerHTML = slider_left.value;
 
 slider_left.oninput = function() {
 output_left.innerHTML = this.value;
@@ -100,7 +100,7 @@ output_left.innerHTML = this.value;
  ****************************************************************/
 var slider_right = document.getElementById("speed_right");
 var output_right = document.getElementById("demo_right");
-output_right.innerHTML = slider.value;
+output_right.innerHTML = slider_right.value;
 
 slider_right.oninput = function() {
 output_right.innerHTML = this.value;
@@ -307,6 +307,8 @@ function sendval_lights(){
             request.onload = function() {
             var res = request.response;
             add_log(res);
+
+            
             document.getElementById("on_off_color_lights").classList.add("greencolor");
             document.getElementById("on_off_color_lights").classList.remove("redcolor");
             }
